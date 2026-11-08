@@ -1,0 +1,28 @@
+gametitle=Resident Evil 4 NTSC-U SLUS-21134 013E349D
+comment=Raw PS2 cheat addresses adapted to PCSX2/AetherSX2 PNACH. Back up saves first.
+
+[Leon - Infinite/Max Health]
+patch=1,EE,1042DA76,extended,00000960
+patch=1,EE,1042DA78,extended,00000960
+
+[Ashley - Max Health]
+patch=1,EE,1042DA7A,extended,04B004B0
+patch=1,EE,1042DA7C,extended,000004A0
+
+[Infinite Ammo / No Reload]
+patch=1,EE,201200AC,extended,00000000
+
+[999 Ammo In Clip - optional]
+patch=0,EE,20120074,extended,20031F45
+
+[Infinite Grenades / RPG / Eggs]
+patch=1,EE,2011EF30,extended,00000000
+
+[One Hit Kill]
+patch=1,EE,201C2A9C,extended,24020000
+
+[Unlock Modes]
+patch=1,EE,10430F66,extended,0000FFFF
+
+[3x Weapon Damage - optional]
+patch=0,EE,201C2A40,extended,3C014080

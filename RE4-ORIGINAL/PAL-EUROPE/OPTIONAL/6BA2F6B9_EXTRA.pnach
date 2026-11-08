@@ -1,0 +1,34 @@
+gametitle=Resident Evil 4 (Europe) [SLES-53702]
+comment=RE4-ORIGINAL cheat pack - AetherSX2 / PCSX2
+comment=Serial SLES-53702 | CRC 6BA2F6B9 | Region PAL-E
+comment=Sumber: ps2-home, gamehacking.org, PCSX2 forum, arsip komunitas
+comment=Simpan sebagai 6BA2F6B9.pnach di folder cheats AetherSX2
+comment=Matikan satu kode dengan menaruh // di depan baris patch
+
+[CATATAN]
+// Modul tambahan: ammo ekstra, uang ekstra, waktu save. Rename ke 6BA2F6B9.pnach untuk memakai.
+// Jangan digabung dengan file utama karena beberapa kode menimpa efek yang sama.
+
+[AMMO EXTRA]
+// Max Infinite Ammo - isi magasin selalu 0x318
+patch=1,EE,2012031C,extended,24020318
+// Equip Weapon = Max Ammo
+patch=1,EE,2011FCE0,extended,24021F38
+// Equip Weapon = Red Rounds
+patch=1,EE,2011FCE4,extended,34420001
+// Never Reload - reload instan
+patch=1,EE,2012020C,extended,24420000
+
+[UANG EXTRA]
+// Belanja menambah Pesetas
+patch=1,EE,2012AF78,extended,00451021
+// Jual item dapat Pesetas maksimal
+patch=1,EE,2012AB8C,extended,3C0205F5
+// Jual item dapat Pesetas maksimal (lanj.)
+patch=1,EE,2012AB90,extended,3442E0FF
+
+[WAKTU / SAVE EXTRA]
+// Always Low Game Save Time
+patch=1,EE,2042DCD4,extended,00000000
+// No Times Saved Recorded
+patch=1,EE,1042DCDA,extended,00000000

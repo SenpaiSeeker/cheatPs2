@@ -1,0 +1,34 @@
+gametitle=Resident Evil 4 (USA) [SLUS-21134]
+comment=RE4-ORIGINAL cheat pack - AetherSX2 / PCSX2
+comment=Serial SLUS-21134 | CRC 013E349D | Region NTSC-U
+comment=Sumber: ps2-home, gamehacking.org, PCSX2 forum, arsip komunitas
+comment=Simpan sebagai 013E349D.pnach di folder cheats AetherSX2
+comment=Matikan satu kode dengan menaruh // di depan baris patch
+
+[CATATAN]
+// Modul tambahan: ammo ekstra, uang ekstra, waktu save. Rename ke 013E349D.pnach untuk memakai.
+// Jangan digabung dengan file utama karena beberapa kode menimpa efek yang sama.
+
+[AMMO EXTRA]
+// Max Infinite Ammo - isi magasin selalu 0x318
+patch=1,EE,2012009C,extended,24020318
+// Equip Weapon = Max Ammo
+patch=1,EE,2011FA60,extended,24021F38
+// Equip Weapon = Red Rounds
+patch=1,EE,2011FA64,extended,34420001
+// Never Reload - reload instan
+patch=1,EE,2011FF8C,extended,24420000
+
+[UANG EXTRA]
+// Belanja menambah Pesetas
+patch=1,EE,2012ACF8,extended,00451021
+// Jual item dapat Pesetas maksimal
+patch=1,EE,2012A90C,extended,3C0205F5
+// Jual item dapat Pesetas maksimal (lanj.)
+patch=1,EE,2012A910,extended,3442E0FF
+
+[WAKTU / SAVE EXTRA]
+// Always Low Game Save Time
+patch=1,EE,2042DA54,extended,00000000
+// No Times Saved Recorded
+patch=1,EE,1042DA5A,extended,00000000

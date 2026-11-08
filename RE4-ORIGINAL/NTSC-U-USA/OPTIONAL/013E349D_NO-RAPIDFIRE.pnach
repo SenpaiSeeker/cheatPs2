@@ -1,0 +1,66 @@
+gametitle=Resident Evil 4 (USA) [SLUS-21134]
+comment=RE4-ORIGINAL cheat pack - AetherSX2 / PCSX2
+comment=Serial SLUS-21134 | CRC 013E349D | Region NTSC-U
+comment=Sumber: ps2-home, gamehacking.org, PCSX2 forum, arsip komunitas
+comment=Simpan sebagai 013E349D.pnach di folder cheats AetherSX2
+comment=Matikan satu kode dengan menaruh // di depan baris patch
+
+[CATATAN]
+// Varian tanpa Rapid Fire. Ganti nama file ini menjadi 013E349D.pnach untuk memakainya.
+// Berguna kalau Rapid Fire membuat crash di versi game kamu.
+
+[01 - DARAH & AMMO]
+// Infinite Health - Leon (bar penuh)
+patch=1,EE,1042DA76,extended,00000960
+// Max Health - Leon (bar penuh)
+patch=1,EE,1042DA78,extended,00000960
+// Infinite Health - Ashley (bar penuh)
+patch=1,EE,1042DA7A,extended,000004B0
+// Max Health - Ashley (bar penuh)
+patch=1,EE,1042DA7C,extended,000004B0
+// Infinite Ammo - semua senjata (ammo tidak berkurang)
+patch=1,EE,201200AC,extended,00000000
+// Infinite Grenades / Rocket Launcher
+patch=1,EE,2011EF30,extended,00000000
+// Infinite Grenades / Rocket Launcher (isi)
+patch=1,EE,1011EF3E,extended,00001000
+
+[04 - AUTO QTE]
+// Auto QTE - timer button masher tidak pernah habis
+patch=1,EE,101DE596,extended,00001000
+
+[05 - UANG]
+// Max Pesetas (99.999.999)
+patch=1,EE,2042DA6C,extended,05F5E0FF
+// Belanja tidak mengurangi Pesetas
+patch=1,EE,2012ACFC,extended,00000000
+
+[06 - UNLOCK]
+// Unlock Everything - karakter, mode, costume, senjata bonus
+patch=1,EE,10430F66,extended,0000FFFF
+// Have All Ada's Reports
+patch=1,EE,00430F6D,extended,00000004
+
+[07 - MERCENARIES & STATISTIK]
+// Mercenaries - Infinite Time
+patch=1,EE,2041B668,extended,00000E00
+// Mercenaries - Max Score
+patch=1,EE,203CFA6C,extended,05F5E0FF
+// Mercenaries - Max Kills
+patch=1,EE,203CFA84,extended,0000270F
+// Mercenaries - Max Combo
+patch=1,EE,203CFA70,extended,0000270F
+// Results - 0 kali mati
+patch=1,EE,00430F34,extended,00000000
+// Results - Max Enemies Killed
+patch=1,EE,20430F38,extended,000003E7
+// Results - Max Enemies Killed (lanj.)
+patch=1,EE,20430F3C,extended,0000270F
+// Results - Perfect Hit Ratio
+patch=1,EE,20430F40,extended,00000064
+// Results - Perfect Hit Ratio (lanj. 1)
+patch=1,EE,20430F44,extended,0000270F
+// Results - Perfect Hit Ratio (lanj. 2)
+patch=1,EE,20430F48,extended,00000064
+// Results - Perfect Hit Ratio (lanj. 3)
+patch=1,EE,20430F4C,extended,0000270F

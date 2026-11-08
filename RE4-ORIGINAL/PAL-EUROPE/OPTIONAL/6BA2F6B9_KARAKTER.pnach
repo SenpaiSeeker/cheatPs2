@@ -1,0 +1,44 @@
+gametitle=Resident Evil 4 (Europe) [SLES-53702]
+comment=RE4-ORIGINAL cheat pack - AetherSX2 / PCSX2
+comment=Serial SLES-53702 | CRC 6BA2F6B9 | Region PAL-E
+comment=Sumber: ps2-home, gamehacking.org, PCSX2 forum, arsip komunitas
+comment=Simpan sebagai 6BA2F6B9.pnach di folder cheats AetherSX2
+comment=Matikan satu kode dengan menaruh // di depan baris patch
+
+[CATATAN]
+// Ganti karakter & costume. Rename ke 6BA2F6B9.pnach untuk memakai.
+// HAPUS tanda // pada TEPAT SATU pilihan per slot. Kalau semua dibiarkan //, tidak ada yang berubah.
+
+[KARAKTER & COSTUME]
+// Karakter slot 1 - Leon
+// patch=1,EE,0042DD0A,extended,00000000
+// Karakter slot 1 - Ashley
+// patch=1,EE,0042DD0A,extended,00000001
+// Karakter slot 1 - Ada
+// patch=1,EE,0042DD0A,extended,00000002
+// Karakter slot 1 - Hunk
+// patch=1,EE,0042DD0A,extended,00000003
+// Karakter slot 1 - Krauser
+// patch=1,EE,0042DD0A,extended,00000004
+// Karakter slot 1 - Wesker
+// patch=1,EE,0042DD0A,extended,00000005
+// Costume slot 1 - Costume 1
+// patch=1,EE,0042DD0B,extended,00000000
+// Costume slot 1 - Costume 2
+// patch=1,EE,0042DD0B,extended,00000001
+// Costume slot 1 - Costume 3
+// patch=1,EE,0042DD0B,extended,00000002
+// Costume slot 1 - Costume 4 (Leon)
+// patch=1,EE,0042DD0B,extended,00000003
+// Ashley selalu muncul
+// patch=1,EE,0042DD7F,extended,00000004
+// Ashley tidak pernah muncul
+// patch=1,EE,0042DD7F,extended,00000000
+// Costume slot 2 - Costume 1
+// patch=1,EE,0042DD0D,extended,00000000
+// Costume slot 2 - Costume 2
+// patch=1,EE,0042DD0D,extended,00000001
+// Costume slot 2 - Costume 3
+// patch=1,EE,0042DD0D,extended,00000002
+// Costume slot 2 - Costume 4 (Leon)
+// patch=1,EE,0042DD0D,extended,00000003

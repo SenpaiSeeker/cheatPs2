@@ -1,0 +1,108 @@
+gametitle=Resident Evil 4 (Europe) [SLES-53702]
+comment=RE4-ORIGINAL cheat pack - AetherSX2 / PCSX2
+comment=Serial SLES-53702 | CRC 6BA2F6B9 | Region PAL-E
+comment=Sumber: ps2-home, gamehacking.org, PCSX2 forum, arsip komunitas
+comment=Simpan sebagai 6BA2F6B9.pnach di folder cheats AetherSX2
+comment=Matikan satu kode dengan menaruh // di depan baris patch
+
+[01 - DARAH PENUH & UNLIMITED (Leon + Ashley)]
+// Berlaku untuk slot 1 dan slot 2, termasuk karakter Mercenaries.
+// Infinite Health - Leon (bar penuh)
+patch=1,EE,1042DCF6,extended,00000960
+// Max Health - Leon (bar penuh)
+patch=1,EE,1042DCF8,extended,00000960
+// Infinite Health - Ashley (bar penuh)
+patch=1,EE,1042DCFA,extended,000004B0
+// Max Health - Ashley (bar penuh)
+patch=1,EE,1042DCFC,extended,000004B0
+
+[02 - AMMO UNLIMITED]
+// Infinite Ammo - semua senjata (ammo tidak berkurang)
+patch=1,EE,2012032C,extended,00000000
+// Infinite Grenades / Rocket Launcher
+patch=1,EE,2011F1B0,extended,00000000
+// Infinite Grenades / Rocket Launcher (isi)
+patch=1,EE,1011F1BE,extended,00001000
+
+[03 - RAPID FIRE (semua senjata)]
+// ASM hook: rate-of-fire = 2 ditulis ke struct senjata. Flag 0x000C0218 dipaksa 1 supaya berlaku untuk SEMUA senjata.
+patch=1,EE,200C0220,extended,3C010042
+patch=1,EE,200C0224,extended,8C210630
+patch=1,EE,200C0228,extended,3C020043
+patch=1,EE,200C022C,extended,8C421228
+patch=1,EE,200C0230,extended,24030220
+patch=1,EE,200C0234,extended,14430002
+patch=1,EE,200C0238,extended,24030002
+patch=1,EE,200C023C,extended,A423011A
+patch=1,EE,200C0240,extended,24030221
+patch=1,EE,200C0244,extended,14430002
+patch=1,EE,200C0248,extended,24030002
+patch=1,EE,200C024C,extended,A423011A
+patch=1,EE,200C0250,extended,24030222
+patch=1,EE,200C0254,extended,14430002
+patch=1,EE,200C0258,extended,24030002
+patch=1,EE,200C025C,extended,A423011A
+patch=1,EE,200C0260,extended,24030224
+patch=1,EE,200C0264,extended,14430002
+patch=1,EE,200C0268,extended,24030002
+patch=1,EE,200C026C,extended,A423011A
+patch=1,EE,200C0270,extended,24030228
+patch=1,EE,200C0274,extended,14430002
+patch=1,EE,200C0278,extended,24030002
+patch=1,EE,200C027C,extended,A423011A
+patch=1,EE,200C0280,extended,3C02000C
+patch=1,EE,200C0284,extended,8C420218
+patch=1,EE,200C0288,extended,24030001
+patch=1,EE,200C028C,extended,14430002
+patch=1,EE,200C0290,extended,24030002
+patch=1,EE,200C0294,extended,A423011A
+patch=1,EE,200C0298,extended,03E00008
+patch=1,EE,2016756C,extended,08030088
+patch=1,EE,100C0218,extended,00000001
+
+[04 - AUTO QTE]
+// Timer mashing di-set 4096 dan di-refresh tiap frame: QTE tombol tidak bisa gagal.
+// Auto QTE - timer button masher tidak pernah habis
+patch=1,EE,101DE816,extended,00001000
+
+[05 - UANG & TOKO]
+// Max Pesetas (99.999.999)
+patch=1,EE,2042DCEC,extended,05F5E0FF
+// Belanja tidak mengurangi Pesetas
+patch=1,EE,2012AF7C,extended,00000000
+
+[06 - UNLOCK SEMUA KARAKTER / MODE / SENJATA]
+// Unlock Everything - karakter, mode, costume, senjata bonus
+patch=1,EE,104311E6,extended,0000FFFF
+// Have All Ada's Reports
+patch=1,EE,004311ED,extended,00000004
+
+[07 - MERCENARIES]
+// Mercenaries - Infinite Time
+patch=1,EE,2041B8E8,extended,00000E00
+// Mercenaries - Max Score
+patch=1,EE,203CFCEC,extended,05F5E0FF
+// Mercenaries - Max Kills
+patch=1,EE,203CFD04,extended,0000270F
+// Mercenaries - Max Combo
+patch=1,EE,203CFCF0,extended,0000270F
+
+[08 - STATISTIK RESULTS]
+// Results - 0 kali mati
+patch=1,EE,004311B4,extended,00000000
+// Results - Max Enemies Killed
+patch=1,EE,204311B8,extended,000003E7
+// Results - Max Enemies Killed (lanj.)
+patch=1,EE,204311BC,extended,0000270F
+// Results - Perfect Hit Ratio
+patch=1,EE,204311C0,extended,00000064
+// Results - Perfect Hit Ratio (lanj. 1)
+patch=1,EE,204311C4,extended,0000270F
+// Results - Perfect Hit Ratio (lanj. 2)
+patch=1,EE,204311C8,extended,00000064
+// Results - Perfect Hit Ratio (lanj. 3)
+patch=1,EE,204311CC,extended,0000270F
+
+[09 - CATATAN]
+// Semua kode di atas aktif. Beri // di depan baris patch untuk mematikan kode tertentu.
+// Kode opsional/berisiko ada di folder OPTIONAL.

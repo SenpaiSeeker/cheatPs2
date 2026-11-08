@@ -1,0 +1,19 @@
+gametitle=Downhill Domination (Europe) [SLES-52202]
+comment=Cheat Unlimited Downhill Domination PAL untuk AetherSX2
+
+// Master Code (Wajib aktif agar engine patch EE versi PAL terbaca stabil)
+patch=1,EE,F010A1B8,extended,0000000E
+
+// Unlimited Energy / Stamina Tak Terbatas (Pembalap tidak lelah saat sprint kayuh)
+patch=1,EE,202DC35C,extended,42C80000
+
+// Unlimited Cash / Uang Maksimal di Bank untuk Pembelian Part Sepeda
+patch=1,EE,2013C850,extended,3C010100
+patch=1,EE,2013C854,extended,AC612208
+
+// Maximum Trick Score / Skor Nilai Trik Maksimal Otomatis Setelah Lompatan
+patch=1,EE,201EA328,extended,3C014960
+patch=1,EE,201EA338,extended,44811000
+
+// 60Hz Smooth Mode (Mengoptimalkan refresh rate versi PAL dari 50Hz menjadi mulus di 60 FPS)
+patch=1,EE,101BC95C,extended,00000002

@@ -1,0 +1,15 @@
+gametitle=Downhill Domination (Europe) [SLES-52202] [73671EFD]
+comment=DOWNHILLL cheat pack - AetherSX2 / PCSX2
+comment=Serial SLES-52202 | CRC 73671EFD | Region PAL-E
+comment=Sumber: GameHacking.org (Code Master, MadCatz, Codejunkies), CheatDevicePS2, PCSX2 Wiki
+comment=Simpan sebagai 73671EFD.pnach di folder cheats
+comment=Mastercode tidak diperlukan di pnach
+comment=60 Hertz: paksa mode NTSC 60Hz
+
+[01 - 60 HERTZ]
+// 60 Hertz - paksa mode NTSC 60Hz (16-bit write)
+patch=1,EE,101BC95C,extended,00000002
+
+[02 - CATATAN]
+// Gunakan hanya kalau layar/TV mendukung 60Hz.
+// Kode ini mengubah mode video; efek samping bisa membuat game terasa lebih cepat.

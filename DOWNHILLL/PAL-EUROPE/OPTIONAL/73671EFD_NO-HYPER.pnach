@@ -1,0 +1,22 @@
+gametitle=Downhill Domination (Europe) [SLES-52202] [73671EFD]
+comment=DOWNHILLL cheat pack - AetherSX2 / PCSX2
+comment=Serial SLES-52202 | CRC 73671EFD | Region PAL-E
+comment=Sumber: GameHacking.org (Code Master, MadCatz, Codejunkies), CheatDevicePS2, PCSX2 Wiki
+comment=Simpan sebagai 73671EFD.pnach di folder cheats
+comment=Mastercode tidak diperlukan di pnach
+comment=Varian tanpa Hyper Mode
+
+[01 - UANG, POWER & SKOR]
+// Max Money - uang maksimal (bagian 1: lui at, 0x0100)
+patch=1,EE,2013C850,extended,3C010100
+// Max Money - uang maksimal (bagian 2: sw at, 0x2208(v1))
+patch=1,EE,2013C854,extended,AC612208
+// Max Power - power maksimal (100.0f)
+patch=1,EE,202DC35C,extended,42C80000
+// Max Score After 1 Jump - skor maksimal setelah 1 lompatan (bagian 1)
+patch=1,EE,201EA328,extended,3C014960
+// Max Score After 1 Jump - skor maksimal setelah 1 lompatan (bagian 2)
+patch=1,EE,201EA338,extended,44811000
+
+[02 - CATATAN]
+// Hyper Mode tidak dipakai di file ini.

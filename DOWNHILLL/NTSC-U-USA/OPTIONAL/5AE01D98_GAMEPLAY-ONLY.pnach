@@ -1,0 +1,24 @@
+gametitle=Downhill Domination (USA) [SCUS-97177] [5AE01D98]
+comment=DOWNHILLL cheat pack - AetherSX2 / PCSX2
+comment=Serial SCUS-97177 | CRC 5AE01D98 | Region NTSC-U
+comment=Sumber: GameHacking.org (Code Master, MadCatz, Codejunkies), CheatDevicePS2, PCSX2 Wiki
+comment=Simpan sebagai 5AE01D98.pnach di folder cheats
+comment=Mastercode tidak diperlukan di pnach
+comment=Varian gameplay saja: tanpa unlock, cocok untuk progres normal
+
+[01 - GAMEPLAY CORE]
+// Always Low Time - timer balapan jadi 0
+patch=1,EE,2043EEC8,extended,00000000
+// Infinite Cash - uang selalu sekitar $2 miliar
+patch=1,EE,204347A8,extended,773593EC
+// Infinite Energy - energy tidak berkurang
+patch=1,EE,2016352C,extended,E4A30004
+// Infinite Trick Meter - trick meter tidak berkurang
+patch=1,EE,201E629C,extended,E601002C
+// Infinite Energy Turbo-R3 - boost selalu penuh
+patch=1,EE,202B2158,extended,42C80000
+// Max Score - skor 999.999
+patch=1,EE,202B58DC,extended,497423F0
+
+[02 - CATATAN]
+// Tidak ada kode unlock di file ini. Progres career tetap normal.

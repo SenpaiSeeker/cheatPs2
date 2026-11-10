@@ -1,0 +1,195 @@
+gametitle=Downhill Domination (USA) [SCUS-97177] [5AE01D98]
+comment=DOWNHILLL cheat pack - AetherSX2 / PCSX2
+comment=Serial SCUS-97177 | CRC 5AE01D98 | Region NTSC-U
+comment=Sumber: GameHacking.org (Code Master, MadCatz, Codejunkies), CheatDevicePS2, PCSX2 Wiki
+comment=Simpan sebagai 5AE01D98.pnach di folder cheats
+comment=Mastercode tidak diperlukan di pnach
+comment=Varian lengkap: gameplay + unlock + Bonus Purchases $1
+
+[01 - GAMEPLAY CORE]
+// Always Low Time - timer balapan jadi 0
+patch=1,EE,2043EEC8,extended,00000000
+// Infinite Cash - uang selalu sekitar $2 miliar
+patch=1,EE,204347A8,extended,773593EC
+// Infinite Energy - energy tidak berkurang
+patch=1,EE,2016352C,extended,E4A30004
+// Infinite Trick Meter - trick meter tidak berkurang
+patch=1,EE,201E629C,extended,E601002C
+// Infinite Energy Turbo-R3 - boost selalu penuh
+patch=1,EE,202B2158,extended,42C80000
+// Max Score - skor 999.999
+patch=1,EE,202B58DC,extended,497423F0
+
+[02 - UNLOCK VIDEO & ITEM (FLAG LANGSUNG)]
+// Flag 0x4347xx dari MadCatz: video, music, editor, level, dan bonus bike.
+// Unlock Video Clips: All Rider Profiles (16 slot)
+patch=1,EE,10434720,extended,0000FFFF
+// Unlock Video Clips: Mountain Cross
+patch=1,EE,00434730,extended,00000001
+// Unlock Video Clips: Freeride
+patch=1,EE,00434731,extended,00000001
+// Unlock Video Clips: Technical DH
+patch=1,EE,00434732,extended,00000001
+// Unlock Video Clips: Crashes
+patch=1,EE,00434733,extended,00000001
+// Unlock Music 1 Pack
+patch=1,EE,00434735,extended,00000001
+// Unlock Music 2 Pack
+patch=1,EE,00434736,extended,00000001
+// Unlock Music 3 Pack
+patch=1,EE,00434737,extended,00000001
+// Unlock Pickup Editor
+patch=1,EE,00434738,extended,00000001
+// Unlock Fog Editor
+patch=1,EE,00434739,extended,00000001
+// Unlock Moshbowl
+patch=1,EE,0043473B,extended,00000001
+// Unlock Dual Slalom
+patch=1,EE,0043473C,extended,00000001
+// Unlock Super Jump
+patch=1,EE,0043473E,extended,00000001
+// Unlock Poster Maker
+patch=1,EE,0043473F,extended,00000001
+// Unlock Bonus Bike: Deer
+patch=1,EE,00434741,extended,00000001
+// Unlock Bonus Bike: Llama
+patch=1,EE,00434742,extended,00000001
+// Unlock Bonus Bike: Sheep
+patch=1,EE,00434743,extended,00000001
+
+[03 - UNLOCK VIDEO CLIPS (ENTRY INDIVIDUAL)]
+// Kode 0x4C6Fxx dari Code Master: membuka entry video satu per satu.
+// Unlock Video: Intro
+patch=1,EE,104C6FAE,extended,00000001
+// Unlock Video: Technical DH
+patch=1,EE,104C6FBE,extended,00000001
+// Unlock Video: Mountain Cross
+patch=1,EE,104C6FCE,extended,00000001
+// Unlock Video: Freeride
+patch=1,EE,104C6FDE,extended,00000001
+// Unlock Video: Crashes
+patch=1,EE,104C6FEE,extended,00000001
+// Unlock Video: Tricks
+patch=1,EE,104C6FFE,extended,00000001
+// Unlock Video: Credits
+patch=1,EE,104C700E,extended,00000001
+// Unlock Video: Rider Profile
+patch=1,EE,104C701E,extended,00000001
+// Rider Profile unlock flag / bypass
+patch=1,EE,2018E7FC,extended,00000000
+
+[04 - UNLOCK RIDER (INDIVIDUAL)]
+// Tujuh rider spesifik. Kode ASM di bawah membuka 14 slot sekaligus.
+// Unlock Rider: Rakel (Sweden)
+patch=1,EE,004B25E3,extended,00000001
+// Unlock Rider: Crud (Germany)
+patch=1,EE,004B25E4,extended,00000001
+// Unlock Rider: Eric Carter (USA)
+patch=1,EE,004B25E5,extended,00000001
+// Unlock Rider: Tara Llanes (USA)
+patch=1,EE,004B25E6,extended,00000001
+// Unlock Rider: Richie Schley (Canada)
+patch=1,EE,004B25E7,extended,00000001
+// Unlock Rider: Brian Lopes (USA)
+patch=1,EE,004B25E8,extended,00000001
+// Unlock Rider: Missy Giove / Missy Glove (USA)
+patch=1,EE,004B25E9,extended,00000001
+
+[05 - UNLOCK SEMUA RIDER (ASM HOOK)]
+// ASM menulis 0xFFFFFFFF ke 0x4346B0 dan 14 flag rider di 0x4B25DD-0x4B25EA.
+// All Riders - hook 1 (paksa v1 = -1)
+patch=1,EE,20193E34,extended,2003FFFF
+// All Riders - code cave 0x000C0000
+patch=1,EE,200C0000,extended,3C030043
+// All Riders - code cave 0x000C0004
+patch=1,EE,200C0004,extended,2001FFFF
+// All Riders - code cave 0x000C0008
+patch=1,EE,200C0008,extended,03E00008
+// All Riders - code cave 0x000C000C (tulis 0x4346B0 = -1)
+patch=1,EE,200C000C,extended,AC6146B0
+// All Riders - hook 2 (jal ke code cave)
+patch=1,EE,20194B90,extended,08030000
+// All Riders - flag slot 1
+patch=1,EE,004B25DD,extended,00000001
+// All Riders - flag slot 2-3
+patch=1,EE,104B25DE,extended,00000101
+// All Riders - flag slot 4-7
+patch=1,EE,204B25E0,extended,01010101
+// All Riders - flag slot 8-11
+patch=1,EE,204B25E4,extended,01010101
+// All Riders - flag slot 12-13
+patch=1,EE,104B25E8,extended,00000101
+// All Riders - flag slot 14
+patch=1,EE,004B25EA,extended,00000001
+
+[06 - BONUS PURCHASES $1]
+// D-code mengecek harga; kalau harga > 1, harga di-set 1. Berlaku untuk 22 item bonus.
+// Bonus Purchases $1 - Gamelbak Bonus
+patch=1,EE,D036A8D0,extended,00300001
+patch=1,EE,2036A8D0,extended,00000001
+// Bonus Purchases $1 - Sparky Tricks
+patch=1,EE,D036A8D4,extended,00300001
+patch=1,EE,2036A8D4,extended,00000001
+// Bonus Purchases $1 - Stretchy Mode
+patch=1,EE,D036A8D8,extended,00300001
+patch=1,EE,2036A8D8,extended,00000001
+// Bonus Purchases $1 - Bonus Rider: ?????
+patch=1,EE,D036A8DC,extended,00300001
+patch=1,EE,2036A8DC,extended,00000001
+// Bonus Purchases $1 - Music 1: 5-Song Variety Pack
+patch=1,EE,D036A8E0,extended,00300001
+patch=1,EE,2036A8E0,extended,00000001
+// Bonus Purchases $1 - Music 2: 5-Song Variety Pack
+patch=1,EE,D036A8E4,extended,00300001
+patch=1,EE,2036A8E4,extended,00000001
+// Bonus Purchases $1 - Music 3: 5-Song Variety Pack
+patch=1,EE,D036A8E8,extended,00300001
+patch=1,EE,2036A8E8,extended,00000001
+// Bonus Purchases $1 - Bonus Level 1: Moshbowl
+patch=1,EE,D036A8EC,extended,00300001
+patch=1,EE,2036A8EC,extended,00000001
+// Bonus Purchases $1 - Bonus Level 2: Moshbowl
+patch=1,EE,D036A8F0,extended,00300001
+patch=1,EE,2036A8F0,extended,00000001
+// Bonus Purchases $1 - Bonus Level 3: Moshbowl
+patch=1,EE,D036A8F4,extended,00300001
+patch=1,EE,2036A8F4,extended,00000001
+// Bonus Purchases $1 - Video 1: Mountain Cross Clip
+patch=1,EE,D036A8F8,extended,00300001
+patch=1,EE,2036A8F8,extended,00000001
+// Bonus Purchases $1 - Video 2: Freeride Clip
+patch=1,EE,D036A8FC,extended,00300001
+patch=1,EE,2036A8FC,extended,00000001
+// Bonus Purchases $1 - Video 3: Technical Downhill Clip
+patch=1,EE,D036A900,extended,00300001
+patch=1,EE,2036A900,extended,00000001
+// Bonus Purchases $1 - Video 4: Crash Clip
+patch=1,EE,D036A904,extended,00300001
+patch=1,EE,2036A904,extended,00000001
+// Bonus Purchases $1 - Video 5: Trick Clip
+patch=1,EE,D036A908,extended,00300001
+patch=1,EE,2036A908,extended,00000001
+// Bonus Purchases $1 - Poster Maker
+patch=1,EE,D036A90C,extended,00300001
+patch=1,EE,2036A90C,extended,00000001
+// Bonus Purchases $1 - Pickup Editor
+patch=1,EE,D036A910,extended,00300001
+patch=1,EE,2036A910,extended,00000001
+// Bonus Purchases $1 - Fog Editor
+patch=1,EE,D036A914,extended,00300001
+patch=1,EE,2036A914,extended,00000001
+// Bonus Purchases $1 - Bonus Bike 1: Sheep
+patch=1,EE,D036A918,extended,00300001
+patch=1,EE,2036A918,extended,00000001
+// Bonus Purchases $1 - Bonus Bike 2: Deer
+patch=1,EE,D036A91C,extended,00300001
+patch=1,EE,2036A91C,extended,00000001
+// Bonus Purchases $1 - Bonus Bike 3: Llama
+patch=1,EE,D036A920,extended,00300001
+patch=1,EE,2036A920,extended,00000001
+// Bonus Purchases $1 - Prototype Bike
+patch=1,EE,D036A924,extended,00300001
+patch=1,EE,2036A924,extended,00000001
+
+[07 - CATATAN]
+// File ini paling lengkap. Kalau game terasa berat/freeze, pakai file utama.

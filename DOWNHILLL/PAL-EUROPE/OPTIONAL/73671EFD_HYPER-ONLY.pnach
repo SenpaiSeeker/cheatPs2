@@ -1,0 +1,18 @@
+gametitle=Downhill Domination (Europe) [SLES-52202] [73671EFD]
+comment=DOWNHILLL cheat pack - AetherSX2 / PCSX2
+comment=Serial SLES-52202 | CRC 73671EFD | Region PAL-E
+comment=Sumber: GameHacking.org (Code Master, MadCatz, Codejunkies), CheatDevicePS2, PCSX2 Wiki
+comment=Simpan sebagai 73671EFD.pnach di folder cheats
+comment=Mastercode tidak diperlukan di pnach
+comment=Hyper Mode saja
+
+[01 - HYPER MODE (TOGGLE)]
+// Tahan X+Up untuk hyper, X+Down untuk normal.
+// Hyper Mode: tahan X + Up
+patch=1,EE,D068E902,extended,0000BFEF
+// Hyper Mode: set kecepatan hyper
+patch=1,EE,2024DC04,extended,00000000
+// Normal Mode: tahan X + Down
+patch=1,EE,D068E902,extended,0000BFBF
+// Normal Mode: kembalikan kecepatan normal
+patch=1,EE,2024DC04,extended,0C09833C

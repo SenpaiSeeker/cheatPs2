@@ -1,0 +1,112 @@
+gametitle=Downhill Domination (USA) [SCUS-97177] [5AE01D98]
+comment=DOWNHILLL cheat pack - AetherSX2 / PCSX2
+comment=Serial SCUS-97177 | CRC 5AE01D98 | Region NTSC-U
+comment=Sumber: GameHacking.org (Code Master, MadCatz, Codejunkies), CheatDevicePS2, PCSX2 Wiki
+comment=Simpan sebagai 5AE01D98.pnach di folder cheats
+comment=Mastercode tidak diperlukan di pnach
+comment=Varian unlock saja: tanpa uang/energy/score
+
+[02 - UNLOCK VIDEO & ITEM (FLAG LANGSUNG)]
+// Flag 0x4347xx dari MadCatz: video, music, editor, level, dan bonus bike.
+// Unlock Video Clips: All Rider Profiles (16 slot)
+patch=1,EE,10434720,extended,0000FFFF
+// Unlock Video Clips: Mountain Cross
+patch=1,EE,00434730,extended,00000001
+// Unlock Video Clips: Freeride
+patch=1,EE,00434731,extended,00000001
+// Unlock Video Clips: Technical DH
+patch=1,EE,00434732,extended,00000001
+// Unlock Video Clips: Crashes
+patch=1,EE,00434733,extended,00000001
+// Unlock Music 1 Pack
+patch=1,EE,00434735,extended,00000001
+// Unlock Music 2 Pack
+patch=1,EE,00434736,extended,00000001
+// Unlock Music 3 Pack
+patch=1,EE,00434737,extended,00000001
+// Unlock Pickup Editor
+patch=1,EE,00434738,extended,00000001
+// Unlock Fog Editor
+patch=1,EE,00434739,extended,00000001
+// Unlock Moshbowl
+patch=1,EE,0043473B,extended,00000001
+// Unlock Dual Slalom
+patch=1,EE,0043473C,extended,00000001
+// Unlock Super Jump
+patch=1,EE,0043473E,extended,00000001
+// Unlock Poster Maker
+patch=1,EE,0043473F,extended,00000001
+// Unlock Bonus Bike: Deer
+patch=1,EE,00434741,extended,00000001
+// Unlock Bonus Bike: Llama
+patch=1,EE,00434742,extended,00000001
+// Unlock Bonus Bike: Sheep
+patch=1,EE,00434743,extended,00000001
+
+[03 - UNLOCK VIDEO CLIPS (ENTRY INDIVIDUAL)]
+// Kode 0x4C6Fxx dari Code Master: membuka entry video satu per satu.
+// Unlock Video: Intro
+patch=1,EE,104C6FAE,extended,00000001
+// Unlock Video: Technical DH
+patch=1,EE,104C6FBE,extended,00000001
+// Unlock Video: Mountain Cross
+patch=1,EE,104C6FCE,extended,00000001
+// Unlock Video: Freeride
+patch=1,EE,104C6FDE,extended,00000001
+// Unlock Video: Crashes
+patch=1,EE,104C6FEE,extended,00000001
+// Unlock Video: Tricks
+patch=1,EE,104C6FFE,extended,00000001
+// Unlock Video: Credits
+patch=1,EE,104C700E,extended,00000001
+// Unlock Video: Rider Profile
+patch=1,EE,104C701E,extended,00000001
+// Rider Profile unlock flag / bypass
+patch=1,EE,2018E7FC,extended,00000000
+
+[04 - UNLOCK RIDER (INDIVIDUAL)]
+// Tujuh rider spesifik. Kode ASM di bawah membuka 14 slot sekaligus.
+// Unlock Rider: Rakel (Sweden)
+patch=1,EE,004B25E3,extended,00000001
+// Unlock Rider: Crud (Germany)
+patch=1,EE,004B25E4,extended,00000001
+// Unlock Rider: Eric Carter (USA)
+patch=1,EE,004B25E5,extended,00000001
+// Unlock Rider: Tara Llanes (USA)
+patch=1,EE,004B25E6,extended,00000001
+// Unlock Rider: Richie Schley (Canada)
+patch=1,EE,004B25E7,extended,00000001
+// Unlock Rider: Brian Lopes (USA)
+patch=1,EE,004B25E8,extended,00000001
+// Unlock Rider: Missy Giove / Missy Glove (USA)
+patch=1,EE,004B25E9,extended,00000001
+
+[05 - UNLOCK SEMUA RIDER (ASM HOOK)]
+// ASM menulis 0xFFFFFFFF ke 0x4346B0 dan 14 flag rider di 0x4B25DD-0x4B25EA.
+// All Riders - hook 1 (paksa v1 = -1)
+patch=1,EE,20193E34,extended,2003FFFF
+// All Riders - code cave 0x000C0000
+patch=1,EE,200C0000,extended,3C030043
+// All Riders - code cave 0x000C0004
+patch=1,EE,200C0004,extended,2001FFFF
+// All Riders - code cave 0x000C0008
+patch=1,EE,200C0008,extended,03E00008
+// All Riders - code cave 0x000C000C (tulis 0x4346B0 = -1)
+patch=1,EE,200C000C,extended,AC6146B0
+// All Riders - hook 2 (jal ke code cave)
+patch=1,EE,20194B90,extended,08030000
+// All Riders - flag slot 1
+patch=1,EE,004B25DD,extended,00000001
+// All Riders - flag slot 2-3
+patch=1,EE,104B25DE,extended,00000101
+// All Riders - flag slot 4-7
+patch=1,EE,204B25E0,extended,01010101
+// All Riders - flag slot 8-11
+patch=1,EE,204B25E4,extended,01010101
+// All Riders - flag slot 12-13
+patch=1,EE,104B25E8,extended,00000101
+// All Riders - flag slot 14
+patch=1,EE,004B25EA,extended,00000001
+
+[06 - CATATAN]
+// Tidak ada kode gameplay di file ini. Semua item dan rider dibuka lewat flag/ASM.

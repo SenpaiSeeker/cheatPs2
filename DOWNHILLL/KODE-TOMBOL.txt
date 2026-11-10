@@ -1,0 +1,85 @@
+========================================================================
+ KODE TOMBOL DOWNHILL DOMINATION (PS2)
+ Berlaku untuk USA (SCUS-97177) dan EROPA (SLES-52202)
+ Paket: DOWNHILLL
+========================================================================
+
+CARA PAKAI
+----------
+1. Kode dimasukkan saat sudah masuk gameplay (bukan di menu utama).
+2. Masukkan urutan tombol dengan CEPAT. Kalau terlalu lambat, kode gagal.
+3. Kode "Unlock Code" WAJIB dimasukkan lebih dulu sebelum kode lain.
+   Setelah Unlock Code berhasil, baru masukkan kode yang diinginkan.
+4. Efek kode tombol biasanya langsung aktif. Sebagian kode hanya berlaku
+   untuk sesi bermain saat itu, jadi masukkan ulang kalau game di-reset.
+5. Kode tombol ini tidak perlu file .pnach dan tidak butuh cheat emulator.
+
+DAFTAR KODE
+-----------
+Unlock Code (wajib pertama)
+    Up, Triangle, Down, X, Left, Circle, Right, Square
+
+Unlock Everything (versi 1)
+    Up, Down, Down, Up, Up, Down, Down
+
+Unlock Everything (versi 2)
+    Down, Up, Up, Down, Down, Up, Up
+
+$2.000 Instan
+    Right, Triangle, Triangle, Left
+
+Free Money
+    Right, Up, Up, Circle, Circle, Square
+
+Adrenaline Boost
+    Down, Left, Left, Right
+
+Always Stoked
+    Down, Square, Square, Left, Circle
+
+Anti Gravity
+    Down, Triangle, Square, Square, Up
+
+Combat Free Code
+    Left, Square, Circle, Square, Left
+
+Combat Upgrade
+    Up, Down, Left, Left, Right
+
+Energy Restore
+    Down, Right, Right, Left, Left
+
+Unlimited Energy
+    Down, Triangle, Left, Left, Square
+
+Infinite Bottles
+    Up, X, Left, Left, Circle, Circle
+
+Mega Flip
+    Right, Up, Up, Right, Right, Square
+
+Speed Freak
+    Down, Triangle, Right, Right, Square
+
+Stoke Trick Meter
+    Down, Left, Left, Right, Right
+
+Super Bounce
+    Left, Square, X, Up, Triangle
+
+Super Bunny Hop
+    Up, X, Left, Square, Up
+
+Upgrade to Bottle
+    Up, Down, Left, Left, Right, Right
+
+CATATAN
+-------
+- "Unlock Everything" membuka item, level, video, music, editor, dan rider
+  bonus. Kalau satu versi tidak berhasil, coba versi satunya.
+- Kode tombol tidak bisa dipakai saat pause, saat loading, atau di menu.
+- Kalau kode tidak bereaksi, ulangi dari Unlock Code. Pastikan tidak ada
+  tombol lain yang ikut tertekan dan jangan memakai analog saat mengetik.
+- Sumber urutan tombol: psxdatacenter.com (halaman SLES-52202) dan arsip
+  kode komunitas Downhill Domination.
+========================================================================

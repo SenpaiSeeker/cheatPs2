@@ -15,6 +15,13 @@ Isi paket:
 - Statistik Results: 0 mati, perfect accuracy, kill maksimal
 - Modul opsional: 1-hit kill, super health, unlock pintu, ganti karakter, dll.
 
+> **Audit 2026-11-11:** seluruh file `.pnach`, folder `OPTIONAL/`, dan README
+> sudah diaudit statis. Temuan utama: **delay slot Rapid Fire yang hilang sudah
+> diperbaiki**, label `20163DF0` dikoreksi (itu kode Leon–Ashley, bukan Krauser),
+> port PAL `20164070` yang tidak terverifikasi dinonaktifkan, dan peringatan
+> kontrol untuk `_KARAKTER` ditambahkan. Tidak ada patch yang menulis langsung
+> ke register input controller. Detail lengkap: [`AUDIT.md`](AUDIT.md).
+
 ---
 
 ## 1. Tabel region & CRC
@@ -83,7 +90,7 @@ Lalu aktifkan **System → Enable Cheats** dan centang cheat di **Game Propertie
 | Max Health Ashley | `1042DA7C` | Max HP Ashley 0x4B0 |
 | Infinite Ammo | `201200AC` | Amunisi tidak berkurang |
 | Infinite Grenades/RPG | `2011EF30` + `1011EF3E` | Grenade & rocket tidak habis |
-| Rapid Fire | ASM `000C0220` + hook `201672EC` | Rate-of-fire = 2 untuk semua senjata |
+| Rapid Fire | ASM `000C0220`–`000C029F` + hook `201672EC` | Rate-of-fire = 2; delay slot `200C029C` = NOP |
 | Auto QTE | `101DE596` | Timer mashing QTE tidak habis |
 | Max Pesetas | `2042DA6C` | 99.999.999 |
 | Belanja gratis | `2012ACFC` | Pesetas tidak berkurang saat beli |
@@ -116,6 +123,16 @@ Isi sama, alamat memakai basis PAL:
 > Konversi NTSC → PAL memakai selisih tetap **+0x280** pada alamat statis.
 > Pola ini sudah diverifikasi silang dengan daftar kode PAL komunitas
 > (health, ammo, QTE, uang, unlock, Mercenaries) — semuanya cocok.
+>
+> **Rapid Fire:** code cave berakhir di `0x200C0298` (`jr ra`). Audit menemukan
+> bahwa delay slot di `0x200C029C` belum ditulis. Tanpa instruksi NOP eksplisit,
+> CPU mengeksekusi sisa data di lokasi itu; ini bisa merusak register/state dan
+> menjelaskan gangguan kontrol yang muncul kadang-kadang. Semua file yang masih
+> memakai Rapid Fire sekarang menulis `200C029C 00000000`.
+>
+> **PAL:** pointer player memakai `[0x00420630]` dan weapon ID `[0x00431228]`.
+> Ini bukan alamat NTSC; jangan menukar baris `8C210630`/`8C421228` dengan
+> `8C2103B0`/`8C420FA8`.
 
 ---
 
@@ -128,9 +145,24 @@ dan simpan file utama sebagai cadangan.
 | File | Isi |
 |---|---|
 | `<CRC>_NO-RAPIDFIRE.pnach` | Semua kode inti tanpa Rapid Fire (kalau rapid fire bikin crash) |
-| `<CRC>_MAX.pnach` | Kode inti + super health hook, 1-hit kill, unlock pintu, statistik waktu |
-| `<CRC>_KARAKTER.pnach` | Ganti karakter (Leon/Ashley/Ada/Hunk/Krauser/Wesker) & costume |
+| `<CRC>_MAX.pnach` | Kode inti + super health hook, 1-hit kill, unlock pintu, statistik waktu, kode Leon–Ashley, Krauser (NTSC) |
+| `<CRC>_KARAKTER.pnach` | Ganti karakter (Leon/Ashley/Ada/Hunk/Krauser/Wesker) & costume — **berisiko kontrol** |
 | `<CRC>_EXTRA.pnach` | Ammo ekstra (max clip, never reload), uang ekstra, waktu save |
+
+> **MAX PAL:** kode `20164070` (label lama “Krauser”) adalah port `+0x280` dari
+> kode NTSC `20163DF0` (Leon’s Attacks Can’t Hurt/Kill Ashley). Alamat PAL itu
+> tidak ditemukan di daftar kode PAL resmi, jadi **dinonaktifkan** di file PAL.
+> Kode Krauser NTSC `2086C264 24020000` hanya ada di MAX USA; tidak ada alamat
+> PAL terverifikasi, jadi jangan dipaksakan ke PAL.
+>
+> **MAX money:** `2012ACFC` (belanja tidak mengurangi) dan `2012ACF8` (belanja
+> menambah) berada di routine yang sama dan saling menimpa. Di MAX hanya varian
+> “menambah” yang aktif; varian “tidak mengurangi” tetap ada di file utama.
+>
+> **KARAKTER:** hanya Leon (ID `0`) yang aman untuk campaign normal. Ashley,
+> Ada, Hunk, Krauser, dan Wesker memakai model/animasi/kamera yang berbeda;
+> memaksakannya bisa membuat karakter bergerak sendiri, kamera liar, analog
+> tidak responsif, aiming/QTE rusak, atau freeze saat cutscene.
 
 Contoh: untuk memakai versi MAX di USA:
 
@@ -145,15 +177,30 @@ Contoh: untuk memakai versi MAX di USA:
 
 - **Backup memory card / save state** sebelum memakai cheat, terutama `_MAX`
   dan `_KARAKTER`. Kode unlock pintu dan 1-hit kill bisa melewati event cerita.
-- **Rapid Fire** adalah ASM hook yang ditulis ke code cave `0x000C0220` lalu
-  di-hook dari fungsi rate-of-fire. Flag `0x000C0218` dipaksa `1` supaya
-  berlaku untuk semua senjata, bukan hanya handgun.
-  Versi PAL adalah port +0x280 dan **belum diuji seluas versi NTSC** —
-  kalau crash, pakai `_NO-RAPIDFIRE`.
-- **1-hit kill** (`201C2A9C`) bisa ikut mengenai player di beberapa event.
-  Pakai hanya di `_MAX` dan setelah backup save.
+- **Rapid Fire** adalah ASM hook yang ditulis ke code cave `0x000C0220`–
+  `0x000C029F` lalu di-hook dari fungsi rate-of-fire. Flag `0x000C0218`
+  dipaksa `1` supaya berlaku untuk semua senjata, bukan hanya handgun.
+  Audit menemukan `jr ra` di `0x200C0298` tanpa delay slot; semua file yang
+  memakai Rapid Fire sekarang menulis NOP di `0x200C029C`. Versi PAL memakai
+  pointer `0x00420630`/`0x00431228` dan **belum diuji seluas NTSC** — kalau
+  masih bermasalah, pakai `_NO-RAPIDFIRE`.
+- **Tidak ada patch yang menulis langsung ke input controller** (`0x00451402`
+  NTSC / `0x00451682` PAL), dan tidak ada D-code/E-code tombol di paket ini.
+  Kalau karakter bergerak sendiri atau kamera liar, penyebab yang perlu dicek
+  adalah `_KARAKTER` (model/animasi/kamera) atau code cave yang korup karena
+  file lama tanpa delay slot — bukan tombol yang dipaksa oleh cheat.
+- **1-hit kill** (`201C2A9C` NTSC / `201C2D1C` PAL) bisa ikut mengenai player
+  di beberapa event. Pakai hanya di `_MAX` dan setelah backup save.
 - **Unlock Everything** menulis flag di data save. Kalau save sudah terlanjur
   rusak/aneh, kembalikan dari backup.
+- **KARAKTER** bukan cheat kosmetik biasa. Hanya Leon (ID `0`) yang aman untuk
+  campaign normal. Jangan aktifkan lebih dari satu baris karakter, dan jangan
+  gabung dengan `_MAX`, 1-hit kill, atau unlock pintu. Untuk Mercenaries,
+  ganti karakter lewat menu game.
+- **MAX money:** jangan aktifkan `2012ACFC` dan `2012ACF8` bersamaan. Di file
+  MAX hanya varian “menambah” yang aktif; varian “tidak mengurangi” ada di
+  file utama. Aturan yang sama berlaku untuk `_EXTRA` + file utama: pilih
+  salah satu, jangan digabung.
 - Jangan mengaktifkan dua file `.pnach` untuk CRC yang sama.
 - Beberapa kode (mis. Max Infinite Ammo, Equip Weapon = Max Ammo) saling
   menimpa efek. Semua sudah dipisahkan ke modul `_EXTRA` supaya tidak bentrok.
@@ -168,6 +215,10 @@ Contoh: untuk memakai versi MAX di USA:
 | Semua kode jalan tapi game crash | Coba `_NO-RAPIDFIRE`; pastikan region/CRC benar |
 | Darah tetap berkurang | Kode max health & current health harus aktif bersamaan; cek save state lama |
 | Rapid fire tidak terasa | Senjata yang dipakai bukan senjata api, atau hook di-patch versi game lain |
+| Karakter bergerak sendiri / kamera liar | Cek `_KARAKTER` lebih dulu (Ashley/Ada/Hunk/Krauser/Wesker). Kembalikan ke Leon ID `0` atau pakai file utama tanpa KARAKTER |
+| Analog kiri/kanan tidak responsif | Sama seperti di atas; pastikan juga file Rapid Fire sudah punya NOP `200C029C` (versi lama belum) |
+| Aiming/shooting/QTE rusak | Jangan gabung KARAKTER dengan MAX/1-hit kill; pastikan Auto QTE memakai `101DE596` (NTSC) / `101DE816` (PAL) |
+| Tombol seperti ditekan sendiri | Tidak ada D/E-code tombol di paket ini; cek mapping/deadzone controller emulator dan coba save state baru |
 | Game freeze saat masuk Mercenaries | Matikan kode statistik/Mercenaries, lalu aktifkan satu per satu |
 
 ---
@@ -189,6 +240,12 @@ Kode dikumpulkan dari arsip komunitas PS2:
 Paket ini hanya merapikan, menerjemahkan, dan menggabungkan kode-kode tersebut
 ke format `.pnach` yang siap pakai, plus port PAL berbasis offset +0x280.
 
+Audit 2026-11-11 bersifat **statis**: format pnach, decode MIPS, pengecekan
+alamat/tabrakan, dan cross-check sumber. Tidak ada ISO/save state Resident
+Evil 4 di lingkungan audit, jadi klaim “sudah diuji di emulator” tidak dibuat.
+Kode yang aman secara kontrol tetap ditandai `AMAN`; kode yang belum cukup
+bukti ditandai `PERLU PENGUJIAN`.
+
 ---
 
 ## 8. Struktur repository
@@ -196,6 +253,7 @@ ke format `.pnach` yang siap pakai, plus port PAL berbasis offset +0x280.
 ```
 RE4-ORIGINAL/
 ├── README.md
+├── AUDIT.md
 ├── NTSC-U-USA/
 │   ├── 013E349D.pnach
 │   └── OPTIONAL/

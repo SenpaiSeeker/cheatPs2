@@ -9,36 +9,49 @@ comment=Matikan satu kode dengan menaruh // di depan baris patch
 // Ganti karakter & costume. Rename ke 6BA2F6B9.pnach untuk memakai.
 // HAPUS tanda // pada TEPAT SATU pilihan per slot. Kalau semua dibiarkan //, tidak ada yang berubah.
 
+[PERINGATAN KONTROL - BACA DULU]
+// HANYA karakter ID 0 (Leon) yang aman untuk campaign normal.
+// Ashley/Ada/Hunk/Krauser/Wesker memakai model, animasi, kamera, dan
+// handler kontrol yang berbeda. Efek samping yang mungkin:
+// - karakter bergerak sendiri / posisi aneh
+// - kamera liar atau menempel ke entity yang salah
+// - analog kiri/kanan tidak responsif
+// - aiming, shooting, dan QTE gagal
+// - freeze saat cutscene atau transisi room
+// Jangan aktifkan lebih dari satu baris karakter.
+// Jangan gabungkan file ini dengan MAX / 1-hit kill / unlock pintu.
+// Untuk Mercenaries, ganti karakter lewat menu game (bukan kode ini).
+
 [KARAKTER & COSTUME]
-// Karakter slot 1 - Leon
+// Karakter slot 1 - Leon (AMAN - default campaign)
 // patch=1,EE,0042DD0A,extended,00000000
-// Karakter slot 1 - Ashley
+// Karakter slot 1 - Ashley (BERISIKO KONTROL)
 // patch=1,EE,0042DD0A,extended,00000001
-// Karakter slot 1 - Ada
+// Karakter slot 1 - Ada (BERISIKO KONTROL)
 // patch=1,EE,0042DD0A,extended,00000002
-// Karakter slot 1 - Hunk
+// Karakter slot 1 - Hunk (BERISIKO KONTROL)
 // patch=1,EE,0042DD0A,extended,00000003
-// Karakter slot 1 - Krauser
+// Karakter slot 1 - Krauser (BERISIKO KONTROL)
 // patch=1,EE,0042DD0A,extended,00000004
-// Karakter slot 1 - Wesker
+// Karakter slot 1 - Wesker (BERISIKO KONTROL)
 // patch=1,EE,0042DD0A,extended,00000005
-// Costume slot 1 - Costume 1
+// Costume slot 1 - Costume 1 (AMAN untuk Leon)
 // patch=1,EE,0042DD0B,extended,00000000
-// Costume slot 1 - Costume 2
+// Costume slot 1 - Costume 2 (AMAN untuk Leon)
 // patch=1,EE,0042DD0B,extended,00000001
-// Costume slot 1 - Costume 3
+// Costume slot 1 - Costume 3 (AMAN untuk Leon)
 // patch=1,EE,0042DD0B,extended,00000002
-// Costume slot 1 - Costume 4 (Leon)
+// Costume slot 1 - Costume 4 (Leon only; karakter lain bisa rusak)
 // patch=1,EE,0042DD0B,extended,00000003
-// Ashley selalu muncul
+// Ashley selalu muncul (BERISIKO: event/QTE/kamera bisa rusak)
 // patch=1,EE,0042DD7F,extended,00000004
-// Ashley tidak pernah muncul
+// Ashley tidak pernah muncul (BERISIKO: event escort bisa macet)
 // patch=1,EE,0042DD7F,extended,00000000
-// Costume slot 2 - Costume 1
+// Costume slot 2 - Costume 1 (AMAN untuk Ashley)
 // patch=1,EE,0042DD0D,extended,00000000
-// Costume slot 2 - Costume 2
+// Costume slot 2 - Costume 2 (AMAN untuk Ashley)
 // patch=1,EE,0042DD0D,extended,00000001
-// Costume slot 2 - Costume 3
+// Costume slot 2 - Costume 3 (AMAN untuk Ashley)
 // patch=1,EE,0042DD0D,extended,00000002
-// Costume slot 2 - Costume 4 (Leon)
+// Costume slot 2 - Costume 4 (Leon only; slot Ashley tidak disarankan)
 // patch=1,EE,0042DD0D,extended,00000003

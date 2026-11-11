@@ -26,6 +26,10 @@ patch=1,EE,1011F1BE,extended,00001000
 
 [03 - RAPID FIRE (semua senjata)]
 // ASM hook: rate-of-fire = 2 ditulis ke struct senjata. Flag 0x000C0218 dipaksa 1 supaya berlaku untuk SEMUA senjata.
+// Code cave 0x000C0220-0x000C029F. Tidak ada akses ke register input controller (0x00451682).
+// Pointer PAL: [0x00420630] untuk player dan [0x00431228] untuk weapon ID (bukan alamat NTSC).
+// FIX AUDIT: jr ra di 0x200C0298 butuh delay slot. Tanpa NOP di 0x200C029C,
+// CPU bisa mengeksekusi sisa data di code cave dan merusak register/state game.
 patch=1,EE,200C0220,extended,3C010042
 patch=1,EE,200C0224,extended,8C210630
 patch=1,EE,200C0228,extended,3C020043
@@ -57,6 +61,8 @@ patch=1,EE,200C028C,extended,14430002
 patch=1,EE,200C0290,extended,24030002
 patch=1,EE,200C0294,extended,A423011A
 patch=1,EE,200C0298,extended,03E00008
+// Delay slot jr ra - wajib NOP (fix audit)
+patch=1,EE,200C029C,extended,00000000
 patch=1,EE,2016756C,extended,08030088
 patch=1,EE,100C0218,extended,00000001
 
@@ -106,3 +112,6 @@ patch=1,EE,204311CC,extended,0000270F
 [09 - CATATAN]
 // Semua kode di atas aktif. Beri // di depan baris patch untuk mematikan kode tertentu.
 // Kode opsional/berisiko ada di folder OPTIONAL.
+// Audit 2026-11-11: delay slot Rapid Fire diperbaiki. Tidak ada kode yang menulis
+// langsung ke input controller; gangguan kontrol biasanya berasal dari KARAKTER
+// atau code cave yang korup. Lihat AUDIT.md untuk analisis lengkap.
